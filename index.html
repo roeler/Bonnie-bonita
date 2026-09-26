@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bonnie Bonita</title>
+  <style>
+    * { box-sizing: border-box; }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+    }
+
+    body {
+      background: #f7b6cf;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      font-family: Arial, sans-serif;
+    }
+
+    .stage {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+    }
+
+    .poodle-button {
+      border: 0;
+      padding: 0;
+      margin: 0;
+      background: transparent;
+      cursor: pointer;
+      width: 190px;
+      height: 190px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .poodle {
+      width: 105px;
+      height: auto;
+      user-select: none;
+      pointer-events: none;
+      animation: float 3s ease-in-out infinite;
+      transform-origin: 50% 90%;
+      filter: drop-shadow(0 5px 5px rgba(90, 40, 55, 0.12));
+    }
+
+    .coming-soon {
+      margin-top: 3px;
+      color: #fff;
+      font-size: 18px;
+      letter-spacing: 5px;
+      font-weight: 400;
+      opacity: 0;
+      transform: translateY(-5px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+      pointer-events: none;
+    }
+
+    .coming-soon.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .poodle-button:focus-visible {
+      outline: 2px solid rgba(255,255,255,0.8);
+      outline-offset: 8px;
+      border-radius: 50%;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(-1deg); }
+      50% { transform: translateY(-5px) rotate(1deg); }
+    }
+
+    .poodle-button:active .poodle {
+      transform: scale(0.94) translateY(2px);
+    }
+
+    @media (max-width: 600px) {
+      .poodle-button { width: 150px; height: 150px; }
+      .poodle { width: 90px; }
+      .coming-soon { font-size: 15px; letter-spacing: 4px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="stage">
+    <button class="poodle-button" id="poodleButton" aria-label="Klik op de poedel">
+      <img class="poodle" src="poodle.png" alt="Schattige toy poedel">
+    </button>
+    <div class="coming-soon" id="comingSoon">COMING SOON</div>
+  </main>
+
+  <script>
+    const button = document.getElementById('poodleButton');
+    const message = document.getElementById('comingSoon');
+
+    button.addEventListener('click', () => {
+      message.classList.toggle('show');
+    });
+  </script>
+</body>
+</html>
